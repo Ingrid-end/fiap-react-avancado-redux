@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Card, Form, Heading, Input, Label, Select } from "./styles"
 import { Button } from "../Button"
+import { useSelector } from "react-redux"
 
 export const TransactionForm = () => {
 
@@ -14,6 +15,9 @@ export const TransactionForm = () => {
             transactionValue
         })
     }
+
+    const transactionTypes = useSelector((state) => state.transactionTypes.types)
+    // console.log(transactionTypes)
 
     return (
         <Card>
@@ -29,6 +33,7 @@ export const TransactionForm = () => {
                     <option value="" disabled hidden>
                         Selecione o tipo de transação
                     </option>
+                    {transactionTypes.map( t => <option value={t} key={t}>{t}</option> )}
                 </Select>
                 <div>
                     <Label>
